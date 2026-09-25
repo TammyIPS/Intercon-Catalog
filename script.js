@@ -4,7 +4,7 @@ const pdf=await pdfjsLib.getDocument('catalog-web-fixed.pdf').promise;
 const left=document.querySelector('.left'),right=document.querySelector('.right');
 const lc=document.getElementById('left'),rc=document.getElementById('right');
 const status=document.getElementById('status'),prev=document.getElementById('prev'),next=document.getElementById('next');
-let spread=0, zoom=1;
+let spread=0, zoom=1, isTurning=false;
 async function paint(n,canvas){const page=await pdf.getPage(n);const vp=page.getViewport({scale:1.55});canvas.width=vp.width;canvas.height=vp.height;await page.render({canvasContext:canvas.getContext('2d'),viewport:vp}).promise}
 async function render(dir=''){
  const mobile=matchMedia('(max-width:760px)').matches;
