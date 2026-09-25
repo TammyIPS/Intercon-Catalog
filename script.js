@@ -34,7 +34,7 @@ next.onclick=()=>{
     turningPage.classList.remove('turn-next');
     await render();
     isTurning=false;
-  },650);
+  },850);
 };
 
 prev.onclick=()=>{
@@ -57,7 +57,7 @@ prev.onclick=()=>{
     turningPage.classList.remove('turn-prev');
     await render();
     isTurning=false;
-  },650);
+  },850);
 };
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')next.click();if(e.key==='ArrowLeft')prev.click()});
 document.getElementById('zoomIn').onclick=()=>{zoom=Math.min(1.35,zoom+.1);document.documentElement.style.setProperty('--scale',zoom)};
