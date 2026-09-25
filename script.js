@@ -1,6 +1,6 @@
 import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs';
 pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
-const pdf=await pdfjsLib.getDocument('catalog-web.pdf').promise;
+const pdf=await pdfjsLib.getDocument('catalog-web-fixed.pdf').promise;
 const left=document.querySelector('.left'),right=document.querySelector('.right');
 const lc=document.getElementById('left'),rc=document.getElementById('right');
 const status=document.getElementById('status'),prev=document.getElementById('prev'),next=document.getElementById('next');
