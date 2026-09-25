@@ -14,8 +14,51 @@ async function render(dir=''){
  prev.disabled=spread===0; next.disabled=mobile?spread+1>=pdf.numPages:spread+2>=pdf.numPages;
  const target=dir==='next'?right:left;target.classList.remove('turn-next','turn-prev');void target.offsetWidth;if(dir)target.classList.add(dir==='next'?'turn-next':'turn-prev');
 }
-next.onclick=()=>{const mobile=matchMedia('(max-width:760px)').matches;spread=Math.min(spread+(mobile?1:2),mobile?pdf.numPages-1:pdf.numPages-1);render('next')};
-prev.onclick=()=>{const mobile=matchMedia('(max-width:760px)').matches;spread=Math.max(0,spread-(mobile?1:2));render('prev')};
+next.onclick=()=>{
+  if(isTurning || next.disabled) return;
+  isTurning=true;
+
+  const mobile=matchMedia('(max-width:760px)').matches;
+  const turningPage=mobile ? right : (spread===0 ? right : right);
+
+  turningPage.classList.remove('turn-next','turn-prev');
+  void turningPage.offsetWidth;
+  turningPage.classList.add('turn-next');
+
+  setTimeout(async()=>{
+    spread=Math.min(
+      spread+(mobile?1:(spread===0?1:2)),
+      pdf.numPages-1
+    );
+
+    turningPage.classList.remove('turn-next');
+    await render();
+    isTurning=false;
+  },650);
+};
+
+prev.onclick=()=>{
+  if(isTurning || prev.disabled) return;
+  isTurning=true;
+
+  const mobile=matchMedia('(max-width:760px)').matches;
+  const turningPage=mobile ? right : left;
+
+  turningPage.classList.remove('turn-next','turn-prev');
+  void turningPage.offsetWidth;
+  turningPage.classList.add('turn-prev');
+
+  setTimeout(async()=>{
+    spread=Math.max(
+      0,
+      spread-(mobile?1:(spread<=1?1:2))
+    );
+
+    turningPage.classList.remove('turn-prev');
+    await render();
+    isTurning=false;
+  },650);
+};
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')next.click();if(e.key==='ArrowLeft')prev.click()});
 document.getElementById('zoomIn').onclick=()=>{zoom=Math.min(1.35,zoom+.1);document.documentElement.style.setProperty('--scale',zoom)};
 document.getElementById('zoomOut').onclick=()=>{zoom=Math.max(.7,zoom-.1);document.documentElement.style.setProperty('--scale',zoom)};
