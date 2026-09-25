@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Intercon Paper Solutions | Product Guide</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs" type="module"></script>
+</head>
+<body>
+<header><div class="brand">INTERCON PAPER SOLUTIONS</div><div class="subtitle">PRODUCT GUIDE</div></header>
+<main>
+  <button class="nav prev" id="prev" aria-label="Previous page">‹</button>
+  <section id="book" class="book" aria-label="Digital product catalog">
+    <div class="sheet left hidden"><canvas id="left"></canvas></div>
+    <div class="sheet right"><canvas id="right"></canvas></div>
+  </section>
+  <button class="nav next" id="next" aria-label="Next page">›</button>
+</main>
+<footer>
+  <button id="zoomOut">−</button><span id="status">Cover</span><button id="zoomIn">+</button>
+  <button id="fullscreen">⛶ Full screen</button>
+  <a href="catalog.pdf" target="_blank" rel="noopener">Open PDF</a>
+</footer>
+<script type="module" src="script.js"></script>
+</body></html>
